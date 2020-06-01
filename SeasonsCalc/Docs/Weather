@@ -1,0 +1,38 @@
+Weather
+
+
+
+Vinter: dygnsmedeltemperaturen <= 0,0°C (5 dagar)
+Sommar: dygnsmedeltemperaturen >= 10,0°C (5 dagar)
+Vår: dygnsmedeltemperaturen > 0,0°C AND < 10,0°C (7 dagar)
+Höst: dygnsmedeltemperaturen < 10,0°C AND > 0,0°C (5 dagar)
+
+Dygnsmedeltemperaturen avrundas till en tiondels grad innan definitionerna tillämpas.
+
+Årstiden sägs då ha börjat på det första av dessa dygn.
+
+
+######### Still To Do
+
+
+
+Om dygnsmedeltemperaturen legat över 0° hela vintersäsongen säger man att våren börjar vid den tidpunkt då temperaturen upphört att sjunka och börjar stiga. I ett diagram som visar temperaturens variation i medeltal över ett stort antal år är det lätt att finna denna tidpunkt.
+
+Men hur gör man när det gäller ett enskilt år med stora dagliga temperatursvängningar där ingen tydlig trend kan urskiljas?
+
+Speciella förhållanden
+Vintern 2007/08 gav ovanligt milt väder och visade att det kanske fanns ett behov att komplettera definitionen av årstiderna. Vi förväntar oss vanligen att våren ersätter vintern.
+
+För att det ska bli vinter krävs att dygnsmedeltemperaturen legat under noll grader minst fem dygn i rad, något som den på flera håll i Sydsverige inte gjorde den vintern. Detta har även inträffat vissa andra år.
+
+Formellt sett så avslutades alltså aldrig hösten år 2007 - men den kunde inte gärna fortsätta hur länge som helst, när solen började stiga allt högre på himlen.
+
+Eftersom vi satt 15 februari som det tidigaste datumet för vårens ankomst (för att minska risken för långvarig återgång till vinterväder), har vi sett det logiskt att sätta 14 februari som senast möjliga datum för hösten.
+
+Vad som sedan händer från och med den 15 februari är beroende av väderutvecklingen. Om dygnsmedeltemperaturen då ligger stabilt över noll i sju dygn så övergår hösten direkt i vår den 15 februari. Men om det i stället blir en period med minst fem dygn i sträck med dygnsmedeltemperatur på noll grader eller därunder så blir det vinter. Om dygnsmedeltemperaturen skulle pendla upp och ner kring noll grader så är årstiden helt enkelt obestämd fram till dess den antingen stabiliserat sig kring vinter- eller vårtemperaturer.
+
+När det gäller hösten är tidigast möjliga datum den 1 augusti och senast möjliga datum för våren den 31 juli. Om det inte hunnit bli sommar före den 1 augusti kan våren direkt övergå i höst om dygnsmedeltemperaturen ligger under 10 grader fem dygn i sträck. Men om det i stället dessförinnan blir en period med minst fem dygn i rad med dygnsmedeltemperatur på 10 grader eller mer, så blir det sommar även fast vi passerat den 1 augusti. Om temperaturen pendlar upp och ner kring 10 grader, så är årstiden helt enkelt obestämd fram till dess den antingen stabiliserat sig kring sommar- eller hösttemperaturer.
+
+Eftersom den 1 augusti är tidigast möjliga datum för hösten så gäller detta även för vinterns ankomst.
+
+Eftersom vårens ankomst beräknas över en period av sju dygn medan sommarens ankomst endast beräknas över fem dygn i sträck, så skulle sommaren teoretiskt kunna anlända tidigare än våren. För att undvika detta har vi lagt till kravet att sommaren inte kan anlända tidigare än våren.
