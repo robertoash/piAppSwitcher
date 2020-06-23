@@ -2,6 +2,7 @@ from flask import Flask
 from flask import request
 from SeasonsCalc import Seasons_Calculation as sc
 from RunWear import RunWear as rw
+from LukasCal import LukasCal as lc
 app = Flask(__name__)
 
 # @app.route('/')
@@ -14,22 +15,27 @@ app = Flask(__name__)
 
 @app.route('/season')
 def season():
-    sc.S_Calc()
-    return sc.S_Calc.currs
+    return sc.S_Calc()
+    # return sc.S_Calc.currs
 
 
 @app.route('/runwearnow')
 def wear_now():
-    rw.runwearnow()
-    return rw.runwearnow.phrase
+    return rw.runwearnow()
+    # return rw.runwearnow.phrase
 
 
 @app.route('/runwearlater')
 def wear_later():
     req_day = request.args.get('req_day')
     req_hour = request.args.get('req_hour')
-    rw.runwearlater(req_day, req_hour)
-    return rw.runwearlater.phrase
+    return rw.runwearlater(req_day, req_hour)
+    # return rw.runwearlater.phrase
+
+
+@app.route('/lukascal')
+def lukascal():
+    return lc.LukasCal()
 
 
 @app.route('/test')
@@ -39,3 +45,5 @@ def test():
 
 if __name__ == "__main__":
     app.run()
+
+lukascal()

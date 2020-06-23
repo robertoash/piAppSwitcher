@@ -6,13 +6,13 @@ from datetime import datetime, timedelta
 def hour_rounder(t):
     # Rounds to nearest hour by adding a timedelta hour if minute >= 30
     return (t.replace(second=0, microsecond=0, minute=0, hour=t.hour)
-               +timedelta(hours=t.minute//30))
+            + timedelta(hours = t.minute//30))
 
 
 def runwearnow():
     x = 0
     clothes_list = []
-    phrs = ''
+    phrase_now = ''
 
     now = datetime.now()
     current_round_time = hour_rounder(now).strftime("%H")
@@ -32,17 +32,17 @@ def runwearnow():
     for y in clothes_list:
         x += 1
         if x < len(clothes_list):
-            phrs += y + ', '
+            phrase_now += y + ', '
         else:
-            phrs += 'and ' + y
+            phrase_now += 'and ' + y
 
-    runwearnow.phrase = phrs
+    return phrase_now
 
 
-def runwearlater(req_day,req_hour):
+def runwearlater(req_day, req_hour):
     x = 0
     clothes_list = []
-    phrs = ''
+    phrase_later = ''
 
     url = 'https://dressmyrun.com/place/59.32944,18.06861?hour=' + req_hour + '&date=' \
           + req_day
@@ -58,8 +58,8 @@ def runwearlater(req_day,req_hour):
     for y in clothes_list:
         x += 1
         if x < len(clothes_list):
-            phrs += y + ', '
+            phrase_later += y + ', '
         else:
-            phrs += 'and ' + y
+            phrase_later += 'and ' + y
 
-    runwearlater.phrase = phrs
+    return phrase_later

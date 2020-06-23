@@ -48,7 +48,7 @@ def S_Calc():
         else:
             currentseason = "Fall"
 
-    S_Calc.currs = currentseason
+    # S_Calc.currs = currentseason
 
     try:
         with open("/var/www/piAppSwitcher/SeasonsCalc/SeasonResponses.txt", mode='a+') as txtfile:
@@ -56,3 +56,5 @@ def S_Calc():
             txtfile.close()
     except IOError:
         print("Couldn't write to file!")
+
+    return currentseason
