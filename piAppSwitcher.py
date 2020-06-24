@@ -2,7 +2,7 @@ from flask import Flask
 from flask import request
 from SeasonsCalc import Seasons_Calculation as sc
 from RunWear import RunWear as rw
-from LukasCal import LukasCal as lc
+from LukasCal import Lukas_Cal as lc
 app = Flask(__name__)
 
 # @app.route('/')
@@ -35,7 +35,7 @@ def wear_later():
 
 @app.route('/lukascal')
 def lukascal():
-    return lc.LukasCal()
+    return lc.L_Cal()
 
 
 @app.route('/test')

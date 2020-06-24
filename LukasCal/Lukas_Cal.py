@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
 
-def LukasCal():
+def L_Cal():
     test = "This works"
     return test
