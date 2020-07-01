@@ -1,6 +1,5 @@
 
 __pycache__/
-sftp-config.json
 .DS_Store
 piAppSwitcher.sublime-workspace
 LukasCal/service.json
