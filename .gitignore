@@ -1,10 +1,10 @@
 
-**/__pycache__/
-**/.idea/workspace.xml 
-**/.idea/tasks.xml
+__pycache__/
 sftp-config.json
 .DS_Store
+piAppSwitcher.sublime-workspace
 LukasCal/service.json
 SeasonsCalc/SeasonResponses.txt
 *.pyc
-piAppSwitcher.sublime-workspace
+SeasonsCalc/Brain/__init__.pyc
+.idea/workspace.xml
