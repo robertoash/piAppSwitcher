@@ -7,3 +7,4 @@ SeasonsCalc/SeasonResponses.txt
 *.pyc
 SeasonsCalc/Brain/__init__.pyc
 .idea/workspace.xml
+MovieFinder/config.py

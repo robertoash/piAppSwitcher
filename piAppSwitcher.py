@@ -3,14 +3,8 @@ from flask import request
 from SeasonsCalc import Seasons_Calculation as sc
 from RunWear import RunWear as rw
 from LukasCal import Lukas_Cal as lc
+from MovieFinder import Movie_Finder as mf
 app = Flask(__name__)
-
-# @app.route('/')
-# def root_command():
-#     cmd = ["/etc/init.d/cups", "start"]
-#     p = Seasons_Calculation.Popen(cmd, stdout=Seasons_Calculation.PIPE, stderr=Seasons_Calculation.PIPE, stdin=Seasons_Calculation.PIPE)
-#     out,err = p.communicate()
-#     return out
 
 
 @app.route('/season')
@@ -38,6 +32,12 @@ def lukascal():
     return lc.L_Cal()
 
 
+@app.route('/moviefinder')
+def moviefinder():
+    movie = request.args.get('movie')
+    return mf.MovieFinder(movie)
+
+
 @app.route('/test')
 def test():
     return 'Server is reachable'
@@ -45,5 +45,3 @@ def test():
 
 if __name__ == "__main__":
     app.run()
-
-lukascal()
