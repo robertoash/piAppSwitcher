@@ -4,6 +4,9 @@ from SeasonsCalc import Seasons_Calculation as sc
 from RunWear import RunWear as rw
 from LukasCal import Lukas_Cal as lc
 from MovieFinder import Movie_Finder as mf
+import requests
+import pas_config as pas
+
 app = Flask(__name__)
 
 
@@ -35,7 +38,9 @@ def lukascal():
 @app.route('/moviefinder')
 def moviefinder():
     movie = request.args.get('movie')
-    return mf.MovieFinder(movie)
+    moviefind = mf.MovieFinder(movie)
+    requests.get(pas.wcpiston)
+    return moviefind
 
 
 @app.route('/test')
