@@ -3,7 +3,7 @@ from flask import request
 from SeasonsCalc import Seasons_Calculation as sc
 from RunWear import RunWear as rw
 from LukasCal import Lukas_Cal as lc
-from MovieFinder import Movie_Finder as mf
+from MovieFinder.Movie_Finder import MovieFinder as mf
 import requests
 import pas_config as pas
 
@@ -38,9 +38,13 @@ def lukascal():
 @app.route('/moviefinder')
 def moviefinder():
     movie = request.args.get('movie')
-    moviefind = mf.MovieFinder(movie)
-    requests.get(pas.wcpiston)
-    return moviefind
+    response = mf(movie)
+    headers = {'content-type': 'application/json'}
+    params = {
+              'Value1': response
+              }
+    requests.get(pas.wcpiston, params=params, headers=headers)
+    return response
 
 
 @app.route('/test')

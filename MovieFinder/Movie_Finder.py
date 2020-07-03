@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 
-import qbittorrentapi
+import qbittorrentapi as qbit
 import rarbgapi
 from MovieFinder import config as cfg
+from datetime import datetime
 
 '''
 CATEGORY_ADULT
@@ -63,30 +64,40 @@ def MovieSearch(moviename):
             else:
                 counter += 1
                 if counter == len(Qualities)*len(alts):
-                    return 'No results found'
+                    response = 'No results found'
+                    return response
 
 
 def MovieFinder(moviename):
 
+    response = ''
     link = MovieSearch(moviename)
 
     if link == 'No results found':
-        return link
+        response = 'No results found for' + moviename
     else:
         # instantiate a Client using the appropriate WebUI configuration
-        qbt_client = qbittorrentapi.Client(host=qbt_auth['host'], username=qbt_auth['username'], password=qbt_auth['password'])
+        qbt_client = qbit.Client(host=qbt_auth['host'], username=qbt_auth['username'], password=qbt_auth['password'])
 
         # the Client will automatically acquire/maintain a logged in state in line with any request.
         # therefore, this is not necessary; however, you many want to test the provided login credentials.
         try:
             qbt_client.auth_log_in()
-        except qbittorrentapi.LoginFailed:
-            return 'Could not authenticate. Server is probably down.'
+        except qbit.LoginFailed:
+            return 'Could not authenticate. Qbt is probably down.'
 
         # add download link to qbt client
         # help(qbt_client.torrents_add)
         try:
             qbt_client.torrents_add(urls=link, save_path=path_to_save, is_paused=False)
-            return "You'll be able to hit play soon..."
-        except:
-            return 'Something went wrong.'
+            response = "You'll be able to watch "+moviename+" soon..."
+        except Exception:
+            return 'Something went wrong adding file to Qbt.'
+
+    try:
+        with open("/var/www/piAppSwitcher/MovieFinder/MFResponses.txt", mode='a+') as txtfile:
+            txtfile.write('On ' + datetime.now().strftime("%Y-%m-%d %H:%M:%S") + ' MovieFinder sent response "' + response + '".\n')
+    except IOError:
+        print("Couldn't write to file!")
+
+    return response
