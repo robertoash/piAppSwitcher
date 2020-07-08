@@ -29,17 +29,20 @@ def main():
                                           orderBy='startTime').execute()
     events = events_result.get('items', [])
 
-    next_events = []
+    next_events_start = []
+    next_events_end = []
 
     if not events:
         return 'No upcoming events found.'
     for event in events:
         start = event['start'].get('dateTime', event['start'].get('date'))
+        end = event['end'].get('dateTime', event['end'].get('date'))
         # Include only all-day events
         if len(start) <= 10:
-            next_events.append([start, event['summary']])
+            next_events_start.append([start, event['summary']])
+            next_events_end.append([end, event['summary']])
 
-    if str(next_events[0][0]).replace("-", "") == datetime.datetime.utcnow().strftime("%Y%m%d"):
+    if str(next_events_start[0][0]).replace("-", "") <= datetime.datetime.utcnow().strftime("%Y%m%d") <= str(next_events_end[0][0]).replace("-", ""):
         return 'Vacation'
     else:
         return 'Not'
