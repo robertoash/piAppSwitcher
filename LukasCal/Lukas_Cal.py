@@ -64,7 +64,7 @@ def main():
     elif "SleepOut" in result:
         return 'SleepOut'
     else:
-        return 'Not'
+        return 'School'
 
 
 # if __name__ == '__main__':
