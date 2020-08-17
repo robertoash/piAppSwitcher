@@ -2,7 +2,9 @@
 
 import qbittorrentapi as qbit
 import rarbgapi
+import putiopy
 from MovieFinder import config as cfg
+from MovieFinder import putiokey as pkey
 from datetime import datetime
 
 '''
@@ -75,6 +77,13 @@ def MovieFinder(moviename):
 
     if link == 'No results found':
         response = 'No results found for' + moviename
+    elif "1080p" in link:
+        try:
+            client = putiopy.Client(pkey.OAUTH_KEY)
+            client.Transfer.add_url(link)
+            response = "You'll be able to watch "+moviename+" on Put IO soon..."
+        except Exception:
+            return 'Something went wrong adding file to Put IO.'
     else:
         # instantiate a Client using the appropriate WebUI configuration
         qbt_client = qbit.Client(host=qbt_auth['host'], username=qbt_auth['username'], password=qbt_auth['password'])
@@ -90,7 +99,7 @@ def MovieFinder(moviename):
         # help(qbt_client.torrents_add)
         try:
             qbt_client.torrents_add(urls=link, save_path=path_to_save, is_paused=False)
-            response = "You'll be able to watch "+moviename+" soon..."
+            response = "You'll be able to watch "+moviename+" in 4K soon..."
         except Exception:
             return 'Something went wrong adding file to Qbt.'
 

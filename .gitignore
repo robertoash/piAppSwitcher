@@ -9,3 +9,4 @@ SeasonsCalc/Brain/__init__.pyc
 .idea/workspace.xml
 MovieFinder/config.py
 pas_config.py
+MovieFinder/putiokey.py
