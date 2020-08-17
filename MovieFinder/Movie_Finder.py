@@ -3,9 +3,12 @@
 import qbittorrentapi as qbit
 import rarbgapi
 import putiopy
+import requests
+from datetime import datetime
 from MovieFinder import config as cfg
 from MovieFinder import putiokey as pkey
-from datetime import datetime
+from MovieFinder import telegramkeys as tkeys
+
 
 '''
 CATEGORY_ADULT
@@ -108,5 +111,9 @@ def MovieFinder(moviename):
             txtfile.write('On ' + datetime.now().strftime("%Y-%m-%d %H:%M:%S") + ' MovieFinder sent response "' + response + '".\n')
     except IOError:
         print("Couldn't write to file!")
+
+    # Send response to Telegram Chat
+    payload = dict(chat_id=tkeys.chat_id, text=response)
+    requests.post(tkeys.url, data=payload)
 
     return response

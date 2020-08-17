@@ -10,3 +10,4 @@ SeasonsCalc/Brain/__init__.pyc
 MovieFinder/config.py
 pas_config.py
 MovieFinder/putiokey.py
+MovieFinder/telegramkeys.py
