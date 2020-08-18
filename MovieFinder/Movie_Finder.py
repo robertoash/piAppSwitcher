@@ -5,7 +5,7 @@ import rarbgapi
 import putiopy
 import requests
 from datetime import datetime
-from MovieFinder import config as cfg
+from MovieFinder import qbtconfig as cfg
 from MovieFinder import putiokey as pkey
 from MovieFinder import telegramkeys as tkeys
 

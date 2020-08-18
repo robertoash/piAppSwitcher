@@ -11,3 +11,4 @@ MovieFinder/config.py
 pas_config.py
 MovieFinder/putiokey.py
 MovieFinder/telegramkeys.py
+MovieFinder/qbtconfig.py
