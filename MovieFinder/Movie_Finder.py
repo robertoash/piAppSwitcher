@@ -5,7 +5,7 @@ import rarbgapi
 import putiopy
 import requests
 from datetime import datetime
-from MovieFinder import qbtconfig as cfg
+from MovieFinder import qbtconfig as qbtcfg
 from MovieFinder import putiokey as pkey
 from MovieFinder import telegramkeys as tkeys
 
@@ -37,9 +37,9 @@ CATEGORY_SOFTWARE
 CATEGORY_EBOOK
 '''
 
-qbt_auth = {'host': cfg.qbt["host"],
-            'username': cfg.qbt['username'],
-            'password': cfg.qbt['password']}
+qbt_auth = {'host': qbtcfg.qbt["host"],
+            'username': qbtcfg.qbt['username'],
+            'password': qbtcfg.qbt['password']}
 
 path_to_save = '/Users/PargAsh/Downloads/Offline/Film'
 
