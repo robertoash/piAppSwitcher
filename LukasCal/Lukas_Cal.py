@@ -22,6 +22,7 @@ def main():
 
     # Call the Calendar API
     today = date.today()
+    weekdayno = date.today().weekday()
     # tomorrow = datetime.datetime.utcnow() + datetime.timedelta(1)
     lastmidnight = (dt.combine(today, dt.min.time())).isoformat() + 'Z'
     # nextmidnight = (dt.combine(tomorrow, dt.min.time())).isoformat() + 'Z'
@@ -43,24 +44,41 @@ def main():
         start = event['start'].get('dateTime', event['start'].get('date'))
         end = event['end'].get('dateTime', event['end'].get('date'))
         # Include only all-day events that are relevant to today
-        if len(start) <= 10 and str(start).replace("-", "") <= \
-           datetime.datetime.utcnow().strftime("%Y%m%d") <= str(end).replace("-", ""):
+        if len(start) <= 10 and str(start).replace("-", "") <= datetime.datetime.utcnow().strftime("%Y%m%d") <= str(end).replace("-", ""):
+            if weekdayno >= 5:
+                todays_events.append("Weekend")
             todays_events.append(event['summary'])
         else:
             todays_events.append('***')
 
     for event in todays_events:
-        if "Vacation" in event:
+        if "Weekend" in event:
+            result.append("Weekend")
+        elif "Away" in event:
+            result.append("Away")
+        elif "Vacation" in event:
             result.append("Vacation")
+        elif "Sick" in event:
+            result.append("Sick")
         elif "Sleep Out" in event:
             result.append("SleepOut")
         else:
             result.append("")
 
-    if "Vacation" in result and "SleepOut" in result:
+    dayaway = ["Vacation", "Sick", "Away"]
+
+    if (x in result for x in dayaway) and "SleepOut" in result:
         return 'AllDayOut'
+    elif "Weekend" in result and "SleepOut" in result:
+        return 'SleepOut'
+    elif "Away" in result:
+        return 'Away'
+    elif "Weekend" in result:
+        return 'Weekend'
     elif "Vacation" in result:
         return 'Vacation'
+    elif "Sick" in result:
+        return 'Sick'
     elif "SleepOut" in result:
         return 'SleepOut'
     else:
