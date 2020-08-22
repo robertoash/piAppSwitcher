@@ -35,6 +35,7 @@ def main():
                                           orderBy='startTime').execute()
     events = events_result.get('items', [])
 
+    relevantevents = []
     todays_events = []
     result = []
 
@@ -43,11 +44,16 @@ def main():
     for event in events:
         start = event['start'].get('dateTime', event['start'].get('date'))
         end = event['end'].get('dateTime', event['end'].get('date'))
-        # Include only all-day events that are relevant to today
-        if len(start) <= 10 and str(start).replace("-", "") <= datetime.datetime.utcnow().strftime("%Y%m%d") <= str(end).replace("-", ""):
-            if weekdayno >= 5:
-                todays_events.append("Weekend")
-            todays_events.append(event['summary'])
+        if str(start).replace("-", "") <= datetime.datetime.utcnow().strftime("%Y%m%d") <= str(end).replace("-", ""):
+            relevantevents.append(event)
+    if weekdayno >= 5:
+        todays_events.append("Weekend")
+    for event in relevantevents:
+        start = event['start'].get('dateTime', event['start'].get('date'))
+        # end = event['end'].get('dateTime', event['end'].get('date'))
+        evsummary = event['summary']
+        if len(start) <= 10:
+            todays_events.append(evsummary)
         else:
             todays_events.append('***')
 
@@ -67,7 +73,7 @@ def main():
 
     dayaway = ["Vacation", "Sick", "Away"]
 
-    if (x in result for x in dayaway) and "SleepOut" in result:
+    if any([x for x in result if x in dayaway]) and "SleepOut" in result:
         return 'AllDayOut'
     elif "Weekend" in result and "SleepOut" in result:
         return 'SleepOut'
