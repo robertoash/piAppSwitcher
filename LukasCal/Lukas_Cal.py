@@ -71,12 +71,12 @@ def main():
         else:
             result.append("")
 
-    dayaway = ["Vacation", "Sick", "Away"]
+    dayinside = ["Vacation", "Sick", "Weekend"]
 
-    if any([x for x in result if x in dayaway]) and "SleepOut" in result:
-        return 'AllDayOut'
-    elif "Weekend" in result and "SleepOut" in result:
+    if any([x for x in result if x in dayinside]) and "SleepOut" in result:
         return 'SleepOut'
+    elif "Away" in result and "SleepOut" in result:
+        return 'AllDayOut'
     elif "Away" in result:
         return 'Away'
     elif "Weekend" in result:
